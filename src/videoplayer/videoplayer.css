@@ -1,0 +1,64 @@
+.header {
+  height: 100px;
+  padding-top: 30px;
+  background-color: #0078d4;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  padding-right: 10px;
+  padding-left: 7px;
+  /* border: 2px solid #ffd700; */
+  border-radius: 20px;
+}
+.logo div {
+  color: black;
+  /* color: #ffff; */
+  font-size: 23px;
+  font-weight: 700;
+  background: transparent;
+}
+
+.searchbar {
+  width: 500px;
+  border: 1px solid #b4b8ab;
+  border-radius: 20px;
+  height: 40px;
+  font-size: 18px;
+  color: black;
+  background-color: #ffff;
+}
+.accountName {
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+}
+.container {
+  display: block;
+}
+.menudiv {
+  height: 80px;
+}
+.menudiv button {
+  border: none;
+  font-size: 17px;
+  font-weight: 400;
+  background: transparent;
+  /* background-color: blue; */
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+}
+.menudiv button:hover {
+  background-color: #454545;
+  color: #ffff;
+}
+.videobox {
+  background-color: red;
+  width: 400px;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}

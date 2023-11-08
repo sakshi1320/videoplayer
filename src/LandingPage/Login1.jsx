@@ -4,19 +4,15 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import "./signin.css";
-import { Modal, message, notification } from "antd";
+import { Modal, message, notification, Form, Input, Button } from "antd";
 import useModal from "antd/es/modal/useModal";
 import { useState } from "react";
-
-const initialValues = {
-  Email: "",
-  Password: "",
-  OTP: "",
-};
 
 export function Login() {
   const [cookies, setcookies, removecookies] = useCookies();
   const navigate = useNavigate();
+  const [form] = Form.useForm();
+  const [form2] = Form.useForm();
   const [modalOpen, setModalOpen] = useState(false);
   const [Message, setMessage] = useState();
   const handleOk = () => {
@@ -31,30 +27,52 @@ export function Login() {
   const handleCancel = () => {
     setModalOpen(false);
   };
-  const { values, errors, handleChange, handleSubmit, handleBlur, touched } = useFormik({
-    initialValues,
-    validationSchema: Signupschema,
-    onSubmit: (values, action) => {
-      axios({
-        method: "get",
-        url: "http://127.0.0.1:5000/login",
-      }).then((res) => {
-        for (var user of res.data) {
-          // console.log(user);
-          if (user.Email == values.Email && user.Password == values.Password) {
-            setModalOpen(true);
-            setcookies("logindata", user);
-            break;
-          } else {
-            notification.error({ message: "Please eanter valide credentials." });
-            action.resetForm();
-            // break;
-            // navigate("/signup");
-          }
+  // const { values, errors, handleChange, handleSubmit, handleBlur, touched } = useFormik({
+  //   initialValues,
+  //   validationSchema: Signupschema,
+  //   onSubmit: (values, action) => {
+  //     axios({
+  //       method: "get",
+  //       url: "http://127.0.0.1:5000/login",
+  //     }).then((res) => {
+  //       for (var user of res.data) {
+  //         // console.log(user);
+  //         if (user.Email == values.Email && user.Password == values.Password) {
+  //           setModalOpen(true);
+  //           setcookies("logindata", user);
+  //           break;
+  //         } else {
+  //           notification.error({ message: "Please eanter valide credentials." });
+  //           action.resetForm();
+  //           // break;
+  //           // navigate("/signup");
+  //         }
+  //       }
+  //     });
+  //   },
+  // });
+  const SubmitHandler = (values) => {
+    console.log("RRRRRR values", values);
+    axios({
+      method: "get",
+      url: "http://127.0.0.1:5000/login",
+    }).then((res) => {
+      for (var user of res.data) {
+        // console.log(user);
+        if (user.Email == values.Email && user.Password == values.Password) {
+          setModalOpen(true);
+          setcookies("logindata", user);
+          break;
+        } else {
+          notification.error({ message: "Please eanter valide credentials." });
+          // action.resetForm();
+          form.resetFields();
+          // break;
+          // navigate("/signup");
         }
-      });
-    },
-  });
+      }
+    });
+  };
   return (
     <>
       <div
@@ -62,59 +80,36 @@ export function Login() {
         style={{ height: "100vh", background: "black" }}
       >
         <div className="signin-box">
-          <form onSubmit={handleSubmit}>
-            <div className="lable">
-              <label htmlFor="Email" className="input-lable">
-                User Name :
-              </label>
-              <br />
-              <input
-                className="input-box"
-                type="email"
-                name="Email"
-                id="Email"
-                placeholder="Email ID"
-                value={values.Email}
-                onChange={handleChange}
-                // onBlur={handleBlur}
-              ></input>
-              {errors.Email && touched.Email ? <p>{errors.Email}</p> : null}
-            </div>
-            <div className="lable">
-              <label htmlFor="Password">Password:</label>
-              <br />
-              <input
-                className="input-box"
-                type="password"
-                name="Password"
-                id="Password"
-                placeholder="Password"
-                value={values.Password}
-                onChange={handleChange}
-                // onBlur={handleBlur}
-              ></input>
-              {errors.Password && touched.Password ? <p>{errors.Password}</p> : null}
-            </div>
-            <div className="btn d-flex justify-content-center align-items-center">
-              <button type="submit">Login</button>
-              <Modal title="Enter OTP" open={modalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <input
-                  name="OTP"
-                  value={values.OTP}
-                  // onKeyUp={(event) => setMessage(event.target.value)}
-                  onChange={handleChange}
-                />
-                {errors.OTP && touched.OTP ? <p>{errors.OTP}</p> : null}
-
-                {/* <input onChange={handleChange}></input> */}
-              </Modal>
-            </div>
-            <p className="signup-link">
-              You can also <Link to="/signup">sign up</Link>
-            </p>
-          </form>
+          <Form form={form} onFinish={SubmitHandler}>
+            <Form.Item name="Email" rules={[{ required: true, message: "Email is required" }]}>
+              <Input placeholder="Email enter" />
+            </Form.Item>
+            <Form.Item
+              name="Password"
+              rules={[{ required: true, message: "Password is required" }]}
+            >
+              <Input.Password placeholder="Password enter" />
+            </Form.Item>
+            <button type="submit" className="btn btn-outline-danger">
+              Sign In
+            </button>
+          </Form>
         </div>
       </div>
+      {/* <Modal title="Enter OTP" open={modalOpen} onOk={handleOk} onCancel={handleCancel}> */}
+      <Form form={form2}>
+        <Form.Item
+          name="OTP"
+          rules={[
+            { required: true, message: "OTP is required" },
+            { min: 6, max: 6, message: "OTP is only 6 digit" },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Button type="submit">Modal Submit</Button>
+      </Form>
+      {/* </Modal> */}
     </>
   );
 }

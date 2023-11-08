@@ -2,7 +2,6 @@ import { Space } from "antd";
 import "../videoplayer/videoplayer.css";
 import Avatar from "antd/es/avatar/avatar";
 import { UserOutlined } from "@ant-design/icons";
-// import logo from "./logo.png";
 export function Header() {
   return (
     <>
@@ -10,7 +9,6 @@ export function Header() {
         <div className="row">
           <div className="col-3 d-flex">
             <div className="logo">
-              {/* <img src={logo} alt="logo" style={{ height: "40px" }}></img> */}
               <div>VideoPlayer</div>
             </div>
           </div>
@@ -24,7 +22,6 @@ export function Header() {
             </div>
           </div>
           <div className="col-3 d-flex">
-            {/* <span className=" bi-person-square mt-2"></span>&nbsp; */}
             <div className="accountName mt-2">
               <Space size={30}>
                 <Avatar
@@ -35,7 +32,11 @@ export function Header() {
                 ></Avatar>
               </Space>
             </div>
+            <div>
+              
+            </div>
           </div>
+         
         </div>
       </div>
       <hr></hr>

@@ -105,7 +105,7 @@ export function Login() {
             { min: 6, max: 6, message: "OTP is only 6 digit" },
           ]}
         >
-          <Input />
+          <Input maxLength={3} placeholder="Enter OTP" />
         </Form.Item>
         <Button type="submit">Modal Submit</Button>
       </Form>

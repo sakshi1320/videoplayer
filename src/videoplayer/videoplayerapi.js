@@ -29,7 +29,7 @@ app.get("/allvideo", (req, res) => {
 });
 
 app.post("/signupDetails", (req, res) => {
-  console.log(req.body, "rrr");
+  // console.log(req.body, "rrr");
   res.send(req.body);
   var signupDetails = {
     FirstName: req.body.FirstName,
@@ -44,7 +44,7 @@ app.post("/signupDetails", (req, res) => {
         .collection("signup")
         .insertOne(signupDetails)
         .then(() => {
-          console.log(signupDetails);
+          // console.log(signupDetails);
           res.send(signupDetails);
         })
         .catch((err) => {
@@ -72,7 +72,28 @@ app.get("/login", (req, res) => {
       });
   });
 });
+app.post("/addvideo", (req, res) => {
+  // console.log(req.body);
+  var addVideo = {
+    title: req.body.Title,
+    url: req.body.Url,
+  };
+  MongoClient.connect("mongodb://127.0.0.1:27017")
+    .then((obj) => {
+      var database = obj.db("videoplayer");
+      database
+        .collection("allvideo")
+        .insertOne(addVideo)
+        .then((doc) => {
+          // console.log(addVideo);
+          res.send(addVideo);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
-app.listen(5000, () => {
+app.listen(5500, () => {
   console.log("app is running on 5000");
 });

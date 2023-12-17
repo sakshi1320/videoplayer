@@ -3,27 +3,39 @@ import { Button, ButtonGroup, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { Signupschema } from "../schema/validation";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Spin } from "antd";
+import { useDispatch } from "react-redux";
+import { signup } from "../redux/slicer/slicer";
 
 const initialValues = {
   FirstName: "",
   LastName: "",
   Email: "",
   Password: "",
+  CnfPassword: "",
 };
 
 export function SignUp() {
   const [loader, setloader] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } = useFormik({
     initialValues,
     validationSchema: Signupschema,
     onSubmit: (values, action) => {
       setloader(true);
+      dispatch(
+        signup({
+          firstname: values.FirstName,
+          lastname: values.LastName,
+          email: values.Email,
+          password: values.Password,
+        })
+      );
       // alert(JSON.stringify(values));
-      axios({ method: "post", url: "http://127.0.0.1:5000/signupDetails", data: values }).then(
+      axios({ method: "post", url: "http://127.0.0.1:5500/signupDetails", data: values }).then(
         (res) => {
           setloader(false);
           // alert("signup done");
@@ -37,32 +49,21 @@ export function SignUp() {
   return (
     <>
       <Spin spinning={loader} tip="loading" size="large">
-        <div className="containe d-flex justify-content-center align-items-center">
-          <div>
-            <div className="d-flex justify-content-center align-items-center mt-4 ">
-              <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                <Button startIcon={<FacebookOutlined />} color="primary">
-                  Connect with Facebook
-                </Button>
-                <Button startIcon={<Twitter />} color="success">
-                  Connect with Twitter
-                </Button>
-              </ButtonGroup>
-            </div>
-            <div className="d-flex justify-content-center align-items-center mt-4">
-              <Button
-                variant="contained"
-                onClick={() => {
-                  navigate("/login");
-                }}
-                sx={{ width: "30ch", backgroundColor: "red" }}
-              >
-                Login
-              </Button>
-            </div>
-            <div className="text-center">Or Sign Up with</div>
+        <div
+          className="container-fluid d-flex justify-content-center align-items-center"
+          style={{ height: "100vh" }}
+        >
+          <div style={{ color: "#808080" }}>
             <form onSubmit={handleSubmit}>
-              <div>
+              <div
+                style={{
+                  background: "white",
+                  padding: "20px",
+                  border: "2px solid ",
+                  borderRadius: "10px",
+                  width: "500px",
+                }}
+              >
                 <div className="mt-4">
                   <TextField
                     id="outlined-basic"
@@ -95,7 +96,6 @@ export function SignUp() {
                     <p style={{ color: "red" }}>{errors.LastName}</p>
                   ) : null}
                 </div>
-
                 <div className="d-flex justify-content-center align-items-center">
                   {/* <FormControl>
               <FormLabel>Gender</FormLabel>
@@ -149,11 +149,40 @@ export function SignUp() {
                     <p style={{ color: "red" }}>{errors.Password}</p>
                   ) : null}
                 </div>
-                <div className="d-flex justify-content-center align-items-center mt-4">
-                  <Button variant="contained" color="success" type="submit" sx={{ width: "30ch" }}>
-                    Create Account
-                  </Button>
+                <div className="mt-4">
+                  <TextField
+                    id="outlined-basic"
+                    type="password"
+                    label="Confirm-Password"
+                    name="CnfPassword"
+                    variant="outlined"
+                    size="small"
+                    value={values.CnfPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    sx={{ width: "50ch" }}
+                  ></TextField>
+                  {errors.CnfPassword && touched.CnfPassword ? (
+                    <p style={{ color: "red" }}>{errors.CnfPassword}</p>
+                  ) : null}
                 </div>
+                <div className="d-flex justify-content-center align-items-center">
+                 
+                  <div className="ms-3 mt-4">
+                    <Button
+                      variant="contained"
+                      color="success"
+                      type="submit"
+                      sx={{ width: "20ch" }}
+                    >
+                      SignUp
+                    </Button>
+                  </div>
+                  
+                </div>
+                <p>
+                    Already have an account <Link to="/login">LogIn</Link>
+                  </p>
               </div>
             </form>
           </div>

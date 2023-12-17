@@ -1,12 +1,15 @@
 import { Carousel } from "antd";
-import corosel1 from "../images/corosel1.png"
-import corosel2 from "../images/corosel2.png"
-import corosel3 from "../images/corosel3.png"
-import corosel4 from "../images/corosel4.png"
+import corosel1 from "../images/corosel1.png";
+import corosel2 from "../images/corosel2.png";
+import corosel3 from "../images/corosel3.png";
+import corosel4 from "../images/corosel4.png";
 export function About() {
   return (
     <>
       <div className="mt-1" style={{ height: "10px", background: "white" }}></div>
+      <div className="about-title">
+        <h1>ABOUT</h1>
+      </div>
       <div id="about">
         <div className="row">
           <div className="col-6">

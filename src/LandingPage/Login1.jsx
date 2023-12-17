@@ -1,12 +1,11 @@
-import { useFormik } from "formik";
-import { Signupschema } from "../schema/loginschema";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { Link, useNavigate } from "react-router-dom";
-import "./signin.css";
-import { Modal, message, notification, Form, Input, Button } from "antd";
-import useModal from "antd/es/modal/useModal";
+import { useNavigate } from "react-router-dom";
+import "./login.css";
+import { Modal, notification, Form, Input, Button } from "antd";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slicer/slicer";
 
 export function Login() {
   const [cookies, setcookies, removecookies] = useCookies();
@@ -15,6 +14,7 @@ export function Login() {
   const [form2] = Form.useForm();
   const [modalOpen, setModalOpen] = useState(false);
   const [Message, setMessage] = useState();
+  const dispatch = useDispatch();
   const handleOk = () => {
     console.log(Message, "rrr");
     if (Message == 784546) {
@@ -52,23 +52,28 @@ export function Login() {
   //   },
   // });
   const SubmitHandler = (values) => {
-    console.log("RRRRRR values", values);
+    // console.log("RRRRRR values", values);
     axios({
       method: "get",
-      url: "http://127.0.0.1:5000/login",
+      url: "http://127.0.0.1:5500/login",
     }).then((res) => {
       for (var user of res.data) {
         // console.log(user);
         if (user.Email == values.Email && user.Password == values.Password) {
           setModalOpen(true);
           setcookies("logindata", user);
+          dispatch(
+            login({
+              email: user.Email,
+              password: user.Password,
+            })
+          );
           break;
         } else {
-          notification.error({ message: "Please eanter valide credentials." });
-          // action.resetForm();
-          form.resetFields();
-          // break;
-          // navigate("/signup");
+          form.setFields([
+            { name: "Email", errors: ["invalid Email"] },
+            { name: "Password", errors: ["invalid Password"] },
+          ]);
         }
       }
     });
@@ -77,7 +82,7 @@ export function Login() {
     <>
       <div
         className="container-fluid d-flex justify-content-center align-items-center"
-        style={{ height: "100vh", background: "black" }}
+        style={{ height: "100vh" }}
       >
         <div className="signin-box">
           <Form form={form} onFinish={SubmitHandler}>
@@ -90,26 +95,38 @@ export function Login() {
             >
               <Input.Password placeholder="Password enter" />
             </Form.Item>
-            <button type="submit" className="btn btn-outline-danger">
-              Sign In
-            </button>
+            <div className="d-flex justify-content-center align-items-center">
+              <button type="submit" className="btn btn-outline-danger">
+                Login
+              </button>
+            </div>
           </Form>
         </div>
       </div>
-      {/* <Modal title="Enter OTP" open={modalOpen} onOk={handleOk} onCancel={handleCancel}> */}
-      <Form form={form2}>
-        <Form.Item
-          name="OTP"
-          rules={[
-            { required: true, message: "OTP is required" },
-            { min: 6, max: 6, message: "OTP is only 6 digit" },
-          ]}
-        >
-          <Input maxLength={3} placeholder="Enter OTP" />
-        </Form.Item>
-        <Button type="submit">Modal Submit</Button>
-      </Form>
-      {/* </Modal> */}
+      <Modal
+        title="Enter OTP"
+        open={modalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        maskClosable={false}
+      >
+        <Form form={form2}>
+          <Form.Item
+            name="OTP"
+            rules={[
+              { required: true, message: "OTP is required" },
+              { min: 6, max: 6, message: "OTP is only 6 digit" },
+            ]}
+          >
+            <Input
+              maxLength={6}
+              placeholder="Enter OTP"
+              onChange={(event) => setMessage(event.target.value)}
+            />
+          </Form.Item>
+          <Button type="submit">Modal Submit</Button>
+        </Form>
+      </Modal>
     </>
   );
 }

@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export function Contact() {
   return (
     <>
@@ -8,7 +10,19 @@ export function Contact() {
           <input type="text" placeholder="Full Name" required></input>
           <input type="text" placeholder="Type Your Email" required></input>
           <textarea placeholder="Write Here...." name="message"></textarea>
-         <button type="submit">Send</button>
+          <button
+            type="submit"
+            onClick={() => {
+              Swal.fire({
+                title: "Thank You",
+                text: "we will contact you soon",
+                icon: "success",
+                allowOutsideClick: false,
+              });
+            }}
+          >
+            Send
+          </button>
         </form>
       </div>
     </>

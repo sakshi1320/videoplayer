@@ -1,29 +1,68 @@
-import { Space } from "antd";
+import { Dropdown, Space, message } from "antd";
 import "../videoplayer/videoplayer.css";
 import Avatar from "antd/es/avatar/avatar";
-import { UserOutlined } from "@ant-design/icons";
-export function Header() {
+import { UserOutlined, DownOutlined } from "@ant-design/icons";
+import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Filterdata } from "./filterdata";
+import axios from "axios";
+export function Header(props) {
+  const [cookies, setcookies, removecookies] = useCookies();
+  const [data, setData] = useState([]);
+  const items = [
+    {
+      label: (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          Log Out
+        </Link>
+      ),
+      key: 1,
+    },
+  ];
+  useEffect(() => {
+    axios({ method: "get", url: "http://127.0.0.1:5500/allvideo" }).then((res) => {
+      setData(res.data);
+      // console.log(res.data);
+      // updatefilter();
+    });
+  }, []);
+  // const updatefilter = () => {
+  //   <Filterdata />;
+  // };
+  // updatefilter();
   return (
     <>
-      <div className="container-fluid mt-2 mb-2 header ">
+      <div className="container-fluid header ">
         <div className="row">
-          <div className="col-3 d-flex">
+          <div className="col-3">
             <div className="logo">
-              <div>VideoPlayer</div>
+              <span className="bi bi-camera-video"></span>
+              <h3>VideoPlayer</h3>
             </div>
           </div>
-          <div className="col-6">
-            <div className="searchbar ms-5">
+          <div className="col-6 d-flex justify-content-center align-items-center">
+            <div>
+              {/* className="searchbar" */}
               <input
-                placeholder="Search"
-                style={{ border: "none", cursor: "pointer", background: "transparent" }}
-                className="ms-3 mt-1"
+                type="text"
+                placeholder="Search Here"
+                className="search"
+                // onChange={(e) => {
+                //   let newFilterVideo = props.state.video.filter((items) => {
+                //     console.log("RRRRR items", items.title);
+                //     console.log("RRRRR  state.searchedName", e.target.value);
+                //     return items.title.toLowerCase() === e.target.value.toLowerCase();
+                //   });
+                //   props.setState({ video: newFilterVideo });
+                // }}
               ></input>
+              <button type="submit">search</button>
             </div>
           </div>
-          <div className="col-3 d-flex">
-            <div className="accountName mt-2">
-              <Space size={30}>
+          <div className="col-3 d-flex justify-content-center align-items-center">
+            <div className="accounperson">
+              <Space size={40}>
                 <Avatar
                   style={{
                     backgroundColor: "#87d068",
@@ -33,13 +72,17 @@ export function Header() {
               </Space>
             </div>
             <div>
-              
+              {cookies?.logindata?.FirstName.toUpperCase()}&nbsp;
+              {cookies?.logindata?.LastName.toUpperCase()}&nbsp;
+              <Dropdown menu={{ items }} trigger={["click"]}>
+                <Space>
+                  <DownOutlined />
+                </Space>
+              </Dropdown>
             </div>
           </div>
-         
         </div>
       </div>
-      <hr></hr>
     </>
   );
 }

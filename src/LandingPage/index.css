@@ -22,14 +22,14 @@ nav {
   border-radius: 5px;
   color: #000000;
 }
-.menu button{
+.menu button {
   border: none;
-  background:transparent;
+  background: transparent;
   color: #ffffff;
   font-weight: 600;
 }
-.menu button:hover{
-  background-color:yellow;
+.menu button:hover {
+  background-color: yellow;
   color: black;
 }
 #main {
@@ -79,6 +79,18 @@ nav {
   transition: all ease 0.5s;
   color: #ffffff;
   border: 2px solid #000000;
+}
+.about-title {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+}
+.about-title h1 {
+  color: #fff;
+  font-size: 3rem;
 }
 #features {
   box-sizing: border-box;

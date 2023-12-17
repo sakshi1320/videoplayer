@@ -7,15 +7,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
-import { Videoplayer } from "./videoplayer/videoplayer";
-import { LandingPage } from "./LandingPage/LandingPage";
-
+import { Provider } from "react-redux";
+import store from "./redux/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <Videoplayer /> */}
-    {/* <LandingPage /> */}
-    <App/>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

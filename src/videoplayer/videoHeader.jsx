@@ -10,6 +10,7 @@ import axios from "axios";
 export function Header(props) {
   const [cookies, setcookies, removecookies] = useCookies();
   const [data, setData] = useState([]);
+  const [inputvalue, setinputvalue] = useState("");
   const items = [
     {
       label: (
@@ -31,6 +32,17 @@ export function Header(props) {
   //   <Filterdata />;
   // };
   // updatefilter();
+  const showfiltervalues = async (e) => {
+    e.preventDefault();
+    setinputvalue(e.target.value);
+    console.log("inputvalue", inputvalue);
+    let newFilterVideo = props.state.video.filter((items) => {
+      console.log("RRRRR items", items.title);
+      // console.log("RRRRR  state.searchedName", e.target.value);
+      return items.title.toLowerCase() === e.target.value.toLowerCase();
+    });
+    props.setState({ video: newFilterVideo });
+  };
   return (
     <>
       <div className="container-fluid header ">
@@ -48,6 +60,8 @@ export function Header(props) {
                 type="text"
                 placeholder="Search Here"
                 className="search"
+                onChange={showfiltervalues}
+                value={inputvalue}
                 // onChange={(e) => {
                 //   let newFilterVideo = props.state.video.filter((items) => {
                 //     console.log("RRRRR items", items.title);

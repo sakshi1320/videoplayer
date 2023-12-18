@@ -1,4 +1,5 @@
-import { Header } from "./videoHeader";
+// import { Header } from "./videoHeader";
+import { Header } from "./videoHeaderNew";
 import { Videoplayer } from "./videoplayer";
 
 export function Settings() {

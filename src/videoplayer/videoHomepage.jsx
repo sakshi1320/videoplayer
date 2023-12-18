@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useReducer, useState } from "react";
 import { Videoplayer } from "./videoplayer";
-import { Header } from "./videoHeader";
+// import { Header } from "./videoHeader";
+import { Header } from "./videoHeaderNew";
 import { notification } from "antd";
 import { NetworkWifi1Bar } from "@mui/icons-material";
 

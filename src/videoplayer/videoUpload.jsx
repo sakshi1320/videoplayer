@@ -1,5 +1,6 @@
 import { Button, Form, Input, Upload, message, notification } from "antd";
-import { Header } from "./videoHeader";
+// import { Header } from "./videoHeader";
+import { Header } from "./videoHeaderNew";
 import { Videoplayer } from "./videoplayer";
 import "./addvideo.css";
 import { useForm } from "antd/es/form/Form";
@@ -29,7 +30,7 @@ export function Newvideo() {
         <div className="row">
           <div className="col-2">
             <Videoplayer />
-            <div style={{borderRight:"1px solid"}}></div>
+            <div style={{ borderRight: "1px solid" }}></div>
           </div>
           <div className="col-8">
             <div>

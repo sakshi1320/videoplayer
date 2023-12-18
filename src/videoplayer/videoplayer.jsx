@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Header } from "./videoHeader";
+// import { Header } from "./videoHeader";
+import { Header } from "./videoHeaderNew";
 // import { Login } from "../LandingPage/login";
 import "../videoplayer/videoplayer.css";
 

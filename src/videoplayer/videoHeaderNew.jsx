@@ -31,12 +31,16 @@ export function Header(props) {
   // };
   const submithandler = (e) => {
     e.preventDefault();
-    console.log("searchvalue", searchvalue);
-    var newFilterVideo = props.state.video.filter((items) => {
-      //   console.log("RRRRR items", items.title);
-      return searchvalue.toLowerCase() === items.title.toLowerCase();
-    });
-    props.setState({ video: newFilterVideo });
+    if (e.target.value) {
+      console.log("searchvalue", searchvalue);
+      var newFilterVideo = props.state.video.filter((items) => {
+        //   console.log("RRRRR items", items.title);
+        return e.target.value.toLowerCase() === items.title.toLowerCase();
+      });
+      props.setState({ video: newFilterVideo });
+    } else {
+      props.setState({ video: state._videoList });
+    }
   };
 
   return (
@@ -58,7 +62,8 @@ export function Header(props) {
                   placeholder="Search Here"
                   className="search"
                   value={searchvalue}
-                  onChange={(e) => setsearchvalue(e.target.value)}
+                  // onChange={(e) => setsearchvalue(e.target.value)}
+                  onChange={submithandler}
                 ></input>
                 <button className="bi bi-search" type="submit"></button>
               </form>

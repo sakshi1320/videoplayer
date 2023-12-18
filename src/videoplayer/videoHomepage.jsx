@@ -16,6 +16,7 @@ export function Homepage() {
     {
       video: [],
       searchedName: "",
+      _videoList: [],
       // isFirst: false,
     }
   );
@@ -37,7 +38,7 @@ export function Homepage() {
         // Assuming you want to check for a successful response
         if (result) {
           // console.log(isFirst, "sakshi");
-          setState({ video: result.data });
+          setState({ video: result.data, _videoList: result.data });
         }
       } catch (error) {
         console.error("Error fetching data:", error);

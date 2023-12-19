@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import "./login.css";
+import "./LoginCompStyle.css";
 import { Modal, notification, Form, Input, Button } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";

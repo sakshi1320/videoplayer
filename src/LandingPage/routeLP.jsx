@@ -1,10 +1,9 @@
-import { About } from "./about";
-import { Contact } from "./contact";
-import { Feature } from "./feature";
-import { Header } from "./header";
-import { Navbar } from "./navbar";
-// import "../LandingPage/css.css"
-import "../LandingPage/index.css";
+import { About } from "./aboutComponent";
+import { Contact } from "./contactComponent";
+import { Feature } from "./featureComponent";
+import { MainPage } from "./mainPageBody";
+import { Navbar } from "./headerBar";
+import "../LandingPage/landingPage.css";
 
 export function LandingPage() {
   return (
@@ -13,7 +12,7 @@ export function LandingPage() {
         <div className="row">
           <div className="col-md-12 ">
             <Navbar />
-            <Header />
+            <MainPage />
             <Feature />
             <About />
             <Contact />

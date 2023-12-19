@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-export function Header() {
+export function MainPage() {
   const navigate = useNavigate();
   return (
     <>

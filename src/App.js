@@ -1,15 +1,15 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { LandingPage } from "./LandingPage/LandingPage";
+import { LandingPage } from "./LandingPage/routeLP";
 import { Videoplayer } from "./videoplayer/videoplayer";
 import { Homepage } from "./videoplayer/videoHomepage";
 import { LikedVideo } from "./videoplayer/videoLiked";
 import { Newvideo } from "./videoplayer/videoUpload";
 import { Settings } from "./videoplayer/videoSetting";
 // import { Login } from "./LandingPage/login";
-import { Login } from "./LandingPage/Login1";
-import { SignUp } from "./LandingPage/signup";
+import { Login } from "./LandingPage/LoginComponent";
+import { SignUp } from "./LandingPage/signupComponet";
 
 function App() {
   return (

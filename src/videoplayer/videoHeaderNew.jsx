@@ -6,9 +6,8 @@ import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 export function Header(props) {
-  const [cookies, setcookies, removecookies] = useCookies();
-  const [searchvalue, setsearchvalue] = useState("");
-  const [updatesearchvalue, setupdatesearchvalue] = useState("");
+  // console.log("props values", props);
+  const [cookies] = useCookies();
   const items = [
     {
       label: (
@@ -19,27 +18,25 @@ export function Header(props) {
       key: 1,
     },
   ];
-  // const submithandler = (e) => {
-  //   e.preventDefault();
-  //   console.log("searchvalue", searchvalue);
-  //   let newFilterVideo = props.state.video.filter((items) => {
-  //     //   console.log("RRRRR items", items.title);
-  //     return searchvalue.toLowerCase() === items.title.toLowerCase();
-  //   });
-  //   props.setState({ video: newFilterVideo });
-  //   // setsearchvalue = "";
-  // };
+
   const submithandler = (e) => {
     e.preventDefault();
     if (e.target.value) {
-      console.log("searchvalue", searchvalue);
+      console.log("e.target.value", e.target.value);
       var newFilterVideo = props.state.video.filter((items) => {
         //   console.log("RRRRR items", items.title);
-        return e.target.value.toLowerCase() === items.title.toLowerCase();
+        // return e.target.value.toLowerCase() === items.title.toLowerCase();
+        return items.title.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
       });
+      // console.log("newfiltervideo values", newFilterVideo);
       props.setState({ video: newFilterVideo });
     } else {
-      props.setState({ video: state._videoList });
+      props.setState({
+        video: props.state._videoList.map((items) => {
+          // console.log("items", items);
+          return items;
+        }),
+      });
     }
   };
 
@@ -56,16 +53,14 @@ export function Header(props) {
           <div className="col-6 d-flex justify-content-center align-items-center">
             <div>
               {/* className="searchbar" */}
-              <form onSubmit={submithandler}>
+              <form>
                 <input
                   type="text"
                   placeholder="Search Here"
                   className="search"
-                  value={searchvalue}
-                  // onChange={(e) => setsearchvalue(e.target.value)}
                   onChange={submithandler}
                 ></input>
-                <button className="bi bi-search" type="submit"></button>
+                {/* <button className="bi bi-search" type="submit"></button> */}
               </form>
             </div>
           </div>

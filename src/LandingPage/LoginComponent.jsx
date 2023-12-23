@@ -84,20 +84,28 @@ export function Login() {
         className="container-fluid d-flex justify-content-center align-items-center"
         style={{ height: "100vh" }}
       >
-        <div className="signin-box">
+        <div className="signin-box" style={{ width: "450px" }}>
           <Form form={form} onFinish={SubmitHandler}>
-            <Form.Item name="Email" rules={[{ required: true, message: "Email is required" }]}>
-              <Input placeholder="Email enter" />
+            <Form.Item
+              name="Email"
+              rules={[{ required: true, message: "Email is required" }]}
+              style={{ width: "50ch" }}
+            >
+              <Input placeholder="Enter Email" />
             </Form.Item>
             <Form.Item
               name="Password"
               rules={[{ required: true, message: "Password is required" }]}
             >
-              <Input.Password placeholder="Password enter" />
+              <Input.Password placeholder="Enter Password" />
             </Form.Item>
             <div className="d-flex justify-content-center align-items-center">
-              <button type="submit" className="btn btn-outline-danger">
-                Login
+              <button
+                type="submit"
+                className="btn btn-success"
+                style={{ width: "20ch", fontWeight: "400" }}
+              >
+                LOGIN
               </button>
             </div>
           </Form>

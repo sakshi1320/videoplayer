@@ -22,7 +22,7 @@ export function Header(props) {
   const submithandler = (e) => {
     e.preventDefault();
     if (e.target.value) {
-      console.log("e.target.value", e.target.value);
+      // console.log("e.target.value", e.target.value);
       var newFilterVideo = props.state.video.filter((items) => {
         //   console.log("RRRRR items", items.title);
         // return e.target.value.toLowerCase() === items.title.toLowerCase();
@@ -59,7 +59,7 @@ export function Header(props) {
                   placeholder="Search Here"
                   className="search"
                   onChange={submithandler}
-                ></input>
+                ></input><span className="bi bi-search"></span>
                 {/* <button className="bi bi-search" type="submit"></button> */}
               </form>
             </div>

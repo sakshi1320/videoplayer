@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 export const Signupschema = Yup.object({
-  FirstName: Yup.string().min(2).required("Enter your first name"),
+  FirstName: Yup.string().min(3).required("Enter your first name"),
   LastName: Yup.string().min(2).required("Enter your last name"),
   Email: Yup.string()
     .email()

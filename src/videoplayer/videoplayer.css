@@ -44,8 +44,9 @@
 }
 .bi-search {
   border: 2px solid hsl(0, 0%, 5%);
-  margin-left: 3px;
-  height: 40px;
+  padding: 6px;
+  /* margin-left: 3px; */
+/* height: 60px; */
   font-size: 18px;
   cursor: pointer;
   background-color: #ffff;

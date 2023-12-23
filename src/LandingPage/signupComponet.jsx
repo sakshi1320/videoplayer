@@ -5,9 +5,10 @@ import { Signupschema } from "../schema/validation";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Spin } from "antd";
+import { Spin, notification } from "antd";
 import { useDispatch } from "react-redux";
 import { signup } from "../redux/slicer/slicer";
+import Swal from "sweetalert2";
 
 const initialValues = {
   FirstName: "",
@@ -39,7 +40,11 @@ export function SignUp() {
         (res) => {
           setloader(false);
           // alert("signup done");
-
+          // notification.msg({ message: "Thank You For Signup." });
+          Swal.fire({
+            icon: "success",
+            title: "Thank You For Signup.",
+          });
           navigate("/login");
         }
       );
@@ -57,11 +62,16 @@ export function SignUp() {
             <form onSubmit={handleSubmit}>
               <div
                 style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
                   background: "white",
                   padding: "20px",
                   border: "2px solid ",
                   borderRadius: "10px",
                   width: "500px",
+                  // maxHeight: "450px",
+                  // overflowY: "auto",
                 }}
               >
                 <div className="mt-4">
@@ -167,7 +177,6 @@ export function SignUp() {
                   ) : null}
                 </div>
                 <div className="d-flex justify-content-center align-items-center">
-                 
                   <div className="ms-3 mt-4">
                     <Button
                       variant="contained"
@@ -178,11 +187,10 @@ export function SignUp() {
                       SignUp
                     </Button>
                   </div>
-                  
                 </div>
-                <p>
-                    Already have an account <Link to="/login">LogIn</Link>
-                  </p>
+                <p style={{ marginTop: "10px" }}>
+                  Already have an account <Link to="/login">LogIn</Link>
+                </p>
               </div>
             </form>
           </div>

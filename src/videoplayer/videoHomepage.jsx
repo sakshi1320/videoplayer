@@ -35,6 +35,10 @@ export function Homepage() {
     const fetchData = async () => {
       try {
         const result = await axios.get("http://127.0.0.1:5500/allvideo");
+        // console.log(
+        //   "check category",
+        //   result.data.map((items) => console.log("items",items.category))
+        // );
         // Assuming you want to check for a successful response
         if (result) {
           // console.log(isFirst, "sakshi");

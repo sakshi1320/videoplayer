@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logoo from "../images/loogooo.png";
+import logoo from "../images/newlogo.png";
 import { Link } from "react-scroll";
 export function Navbar() {
   const navigate = useNavigate();
@@ -17,14 +17,11 @@ export function Navbar() {
         }}
       >
         <nav>
-          <div style={{ height: "50px" }} className="logo">
-            <img src={logoo} alt="" style={{ height: "50px", width: "140px" }}></img>
+          <div className="logo">
+            <img src={logoo}></img>
           </div>
           <div>
             <ul className="menu">
-              {/* <li>
-                <Link to="main">Player</Link>
-              </li> */}
               <li>
                 <Link to="features">Features</Link>
               </li>

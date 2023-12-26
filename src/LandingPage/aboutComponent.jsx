@@ -16,16 +16,16 @@ export function About() {
             <div style={{ width: "500px" }}>
               <Carousel autoplay>
                 <div>
-                  <img style={{ background: "red", height: "200px" }} src={corosel1}></img>
+                  <img style={{ width: "400px", height: "250px" }} src={corosel1}></img>
                 </div>
                 <div>
-                  <img style={{ background: "red", height: "200px" }} src={corosel2}></img>
+                  <img style={{ width: "400px", height: "250px" }} src={corosel2}></img>
                 </div>
                 <div>
-                  <img style={{ background: "red", height: "200px" }} src={corosel3}></img>
+                  <img style={{ width: "400px", height: "250px" }} src={corosel3}></img>
                 </div>
                 <div>
-                  <img style={{ background: "red", height: "200px" }} src={corosel4}></img>
+                  <img style={{ width: "400px", height: "250px" }} src={corosel4}></img>
                 </div>
               </Carousel>
             </div>

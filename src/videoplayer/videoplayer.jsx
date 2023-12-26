@@ -17,10 +17,16 @@ export function Videoplayer() {
             </Link>
           </div>
           <div className="menudiv">
-            <Link to="/liked">
-              <button>
-                <span className="bi bi-valentine  me-4"></span>Liked video
-              </button>
+            <Link to="/category">
+              {/* <button> */}
+                <span className="bi bi-valentine  me-4"></span>
+                <select>
+                  <option>Category</option>
+                  <option>food</option>
+                  <option>education</option>
+                  <option>music</option>
+                </select>
+              {/* </button> */}
             </Link>
           </div>
           <div className="menudiv">

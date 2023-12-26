@@ -2,7 +2,7 @@
 import { Header } from "./videoHeaderNew";
 import { Videoplayer } from "./videoplayer";
 
-export function LikedVideo() {
+export function VideoCategory() {
   return (
     <>
       <div>
@@ -16,7 +16,7 @@ export function LikedVideo() {
             <Videoplayer />
           </div>
           <div className="col-8">
-            <div>in liked video</div>
+            <div></div>
           </div>
         </div>
       </div>

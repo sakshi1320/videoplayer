@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LandingPage } from "./LandingPage/routeLP";
 import { Videoplayer } from "./videoplayer/videoplayer";
 import { Homepage } from "./videoplayer/videoHomepage";
-import { LikedVideo } from "./videoplayer/videoLiked";
+import { VideoCategory } from "./videoplayer/VideoCategory";
 import { Newvideo } from "./videoplayer/videoUpload";
 import { Settings } from "./videoplayer/videoSetting";
 // import { Login } from "./LandingPage/login";
@@ -20,7 +20,7 @@ function App() {
           {/* <Videoplayer /> */}
           {/* <Route path="/" element={<LandingPage />}></Route> */}
           <Route path="/home" element={<Homepage />}></Route>
-          <Route path="/liked" element={<LikedVideo />}></Route>
+          <Route path="/category" element={<VideoCategory />}></Route>
           <Route path="/upload" element={<Newvideo />}></Route>
           <Route path="/setting" element={<Settings />}></Route>
           {/* <Route path="/login" element={<Login />}></Route> */}

@@ -5,6 +5,7 @@ import { Videoplayer } from "./videoplayer";
 import { Header } from "./videoHeaderNew";
 import { notification } from "antd";
 import { NetworkWifi1Bar } from "@mui/icons-material";
+import { Shimmer } from "./shimmer";
 
 export function Homepage() {
   // const [video, setvideo] = useState([]);
@@ -76,19 +77,25 @@ export function Homepage() {
   //     message: "login success",
   //   });
   // }, [state?.video]);
+  if (state.video.length === 0) {
+    return <Shimmer />;
+  }
   return (
     <>
-      <div className="container-fluid ">
-        <div className="row mt-3">
-          <div className="col-12">
+      <div className="container-fluid">
+        <div className="row sticky-top" style={{ overflow: "hidden" }}>
+          <div className="col-12 ">
             <Header setState={setState} state={state} />
           </div>
         </div>
         <div className="row">
-          <div className="col-2" style={{ borderRight: "1px solid gray" }}>
+          <div
+            className="col-2 h-100"
+            style={{ borderRight: "1px solid gray", position: "sticky", top: "70px" }}
+          >
             <Videoplayer />
           </div>
-          <div className="col-10">
+          <div className="col-10 h-100 mb-2">
             <div>
               <div>
                 <div className="d-flex justify-content-between align-items-center flex-wrap">
@@ -96,11 +103,11 @@ export function Homepage() {
                     <div>
                       <div className="videobox">
                         {/* <div> */}
-                        <iframe src={vid.url} title=""></iframe>
+                        <iframe key={vid.id} src={vid.url} title=""></iframe>
                         {/* </div> */}
                       </div>
                       <div className="vidtitle">
-                        <h6>{vid.title}</h6>
+                        <h6 key={vid.id}>{vid.title}</h6>
                       </div>
                     </div>
                   ))}

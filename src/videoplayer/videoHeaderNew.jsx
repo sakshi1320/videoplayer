@@ -1,5 +1,6 @@
 import { Dropdown, Space, message } from "antd";
 import "../videoplayer/videoplayer.css";
+import logo from "../images/newlogo.png";
 import Avatar from "antd/es/avatar/avatar";
 import { UserOutlined, DownOutlined } from "@ant-design/icons";
 import { useCookies } from "react-cookie";
@@ -44,27 +45,28 @@ export function Header(props) {
     <>
       <div className="container-fluid header ">
         <div className="row">
-          <div className="col-3">
-            <div className="logo">
-              <span className="bi bi-camera-video"></span>
-              <h3>VideoPlayer</h3>
+          {/* <div className="col-3 mt-2"> */}
+          <div className="col-md-3 col-sm-6 mt-2">
+            <div className="logo ">
+              <img src={logo}></img>
             </div>
           </div>
-          <div className="col-6 d-flex justify-content-center align-items-center">
+          {/* <div className="col-6 mt-3"> */}
+          <div className="col-md-6 col-sm-12 mt-3">
             <div>
-              {/* className="searchbar" */}
               <form>
+                <span className="bi bi-search"></span>
                 <input
                   type="text"
                   placeholder="Search Here"
                   className="search"
                   onChange={submithandler}
-                ></input><span className="bi bi-search"></span>
-                {/* <button className="bi bi-search" type="submit"></button> */}
+                ></input>
               </form>
             </div>
           </div>
-          <div className="col-3 d-flex justify-content-center align-items-center">
+          {/* <div className="col-3 mt-2 d-flex justify-content-center align-items-center"> */}{" "}
+          <div className="col-md-3 col-sm-6 mt-2 d-flex justify-content-center align-items-center">
             <div className="accounperson">
               <Space size={40}>
                 <Avatar
@@ -75,7 +77,7 @@ export function Header(props) {
                 ></Avatar>
               </Space>
             </div>
-            <div>
+            <div className="loggedUserData">
               {cookies?.logindata?.FirstName.toUpperCase()}&nbsp;
               {cookies?.logindata?.LastName.toUpperCase()}&nbsp;
               <Dropdown menu={{ items }} trigger={["click"]}>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logoo from "../images/newlogo.png";
+import logoo from "../../images/newlogo.png";
 import { Link } from "react-scroll";
 export function Navbar() {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { Dropdown, Space, message } from "antd";
 import "../videoplayer/videoplayer.css";
-import logo from "../images/newlogo.png";
+import logo from "../../images/newlogo.png";
 import Avatar from "antd/es/avatar/avatar";
 import { UserOutlined, DownOutlined } from "@ant-design/icons";
 import { useCookies } from "react-cookie";

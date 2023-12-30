@@ -1,13 +1,13 @@
 import { FacebookOutlined, Twitter } from "@mui/icons-material";
 import { Button, ButtonGroup, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import { Signupschema } from "../schema/validation";
+import { Signupschema } from "../../schema/validation";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Spin, notification } from "antd";
 import { useDispatch } from "react-redux";
-import { signup } from "../redux/slicer/slicer";
+import { signup } from "../../redux/slicer/slicer";
 import Swal from "sweetalert2";
 
 const initialValues = {

@@ -1,8 +1,8 @@
 import { FeaturesBox } from "./featureComponentBox";
-import feature1 from "../images/feature1.jpg";
-import feature2 from "../images/feature2.png";
-import feature3 from "../images/feature3.png";
-import feature4 from "../images/feature4.png";
+import feature1 from "../../images/feature1.jpg";
+import feature2 from "../../images/feature2.png";
+import feature3 from "../../images/feature3.png";
+import feature4 from "../../images/feature4.png";
 
 export function Feature() {
   return (

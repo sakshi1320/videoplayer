@@ -5,7 +5,7 @@ import "./LoginCompStyle.css";
 import { Modal, notification, Form, Input, Button } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../redux/slicer/slicer";
+import { login } from "../../redux/slicer/slicer";
 
 export function Login() {
   const [cookies, setcookies, removecookies] = useCookies();

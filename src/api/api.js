@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/allvideo", (req, res) => {
-  MongoClient.connect("mongodb://127.0.0.1:27017")
+  MongoClient.connect("mongodb+srv://sakshi13:Sakshi%40100@cluster0.22zds3k.mongodb.net/")
     .then((obj) => {
       var database = obj.db("videoplayer");
       database

@@ -1,17 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { LandingPage } from "./LandingPage/routeLP";
-import { Videoplayer } from "./videoplayer/videoplayer";
-import { Homepage } from "./videoplayer/videoHomepage";
-import { VideoCategory } from "./videoplayer/VideoCategory";
-import { Newvideo } from "./videoplayer/videoUpload";
-import { Settings } from "./videoplayer/videoSetting";
-// import { Login } from "./LandingPage/login";
-import { Login } from "./LandingPage/LoginComponent";
-import { SignUp } from "./LandingPage/signupComponet";
-import { EditProfileForm } from "./videoplayer/EditProfileForm";
-import { NotFound } from "./videoplayer/NotFound ";
+import { LandingPage } from "./routes/LandingPage/routeLP";
+// import { Videoplayer } from "./routes/videoplayer/videoplayer";
+import { Homepage } from "./routes/videoplayer/videoHomepage";
+import { VideoCategory } from "./routes/videoplayer/VideoCategory";
+import { Newvideo } from "./routes/videoplayer/videoUpload";
+import { Settings } from "./routes/videoplayer/videoSetting";
+import { Login } from "./routes/LandingPage/LoginComponent";
+import { SignUp } from "./routes/LandingPage/signupComponet";
+import { EditProfileForm } from "./routes/videoplayer/EditProfileForm";
+import { NotFound } from "./routes/videoplayer/NotFound ";
 
 function App() {
   return (

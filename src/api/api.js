@@ -6,7 +6,7 @@ const connectDB = require("../config/db");
 connectDB();
 
 var cors = require("cors");
-var MongoClient = require("mongodb").MongoClient;
+// var MongoClient = require("mongodb").MongoClient;
 var app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));

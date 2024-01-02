@@ -14,7 +14,7 @@ app.use(express.json());
 app.get("/allvideo", (req, res) => {
   MongoClient.connect()
     .then((obj) => {
-      // var database = obj.db("videoplayer");
+      var database = obj.db("videoplayer");
       database
         .collection("allvideo")
         .find({})

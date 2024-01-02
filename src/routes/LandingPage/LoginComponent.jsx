@@ -58,7 +58,7 @@ export function Login() {
       url: "http://127.0.0.1:5500/login",
     }).then((res) => {
       for (var user of res.data) {
-        // console.log(user);
+        console.log(user);
         if (user.Email == values.Email && user.Password == values.Password) {
           setModalOpen(true);
           setcookies("logindata", user);

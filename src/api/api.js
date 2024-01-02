@@ -45,7 +45,7 @@ app.get("/allvideo", async (req, res) => {
   }
 });
 
-app.post("/signupDetails", (req, res) => {
+app.post("/signupDetails", async (req, res) => {
   // console.log(req.body, "rrr");
   res.send(req.body);
   var signupDetails = {
@@ -54,61 +54,86 @@ app.post("/signupDetails", (req, res) => {
     Email: req.body.Email,
     Password: req.body.Password,
   };
-  MongoClient.connect("mongodb://127.0.0.1:27017")
-    .then((obj) => {
-      var database = obj.db("videoplayer");
-      database
-        .collection("signup")
-        .insertOne(signupDetails)
-        .then(() => {
-          // console.log(signupDetails);
-          res.send(signupDetails);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  try {
+    const database = mongoose.connection;
+    const result = await database.collection("signup").insertOne(signupDetails).find({}).toArray();
+    res.send(result);
+  } catch (err) {
+    console.error("Error fetching data from MongoDB:", err);
+    res.status(500).send("Internal Server Error");
+  }
+  // MongoClient.connect("mongodb://127.0.0.1:27017")
+  //   .then((obj) => {
+  //     var database = obj.db("videoplayer");
+  //     database
+  //       .collection("signup")
+  //       .insertOne(signupDetails)
+  //       .then(() => {
+  //         // console.log(signupDetails);
+  //         res.send(signupDetails);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 });
 
-app.get("/login", (req, res) => {
+app.get("/login", async (req, res) => {
   // var video_Email = req.params.Email;
   // console.log(video_Email, "rrr");
-  MongoClient.connect("mongodb://127.0.0.1:27017").then((obj) => {
-    var database = obj.db("videoplayer");
-    database
-      .collection("signup")
-      .find()
-      .toArray()
-      .then((document) => {
-        console.log(document);
-        res.send(document);
-        res.end();
-      });
-  });
+  try {
+    const database = mongoose.connection;
+    const result = await database.collection("signup").find({}).toArray();
+    res.send(result);
+    res.end();
+  } catch (err) {
+    console.error("Error fetching data from MongoDB:", err);
+    res.status(500).send("Internal Server Error");
+  }
+  // MongoClient.connect("mongodb://127.0.0.1:27017").then((obj) => {
+  //   var database = obj.db("videoplayer");
+  //   database
+  //     .collection("signup")
+  //     .find()
+  //     .toArray()
+  //     .then((document) => {
+  //       console.log(document);
+  //       res.send(document);
+  //       res.end();
+  //     });
+  // });
 });
-app.post("/addvideo", (req, res) => {
+app.post("/addvideo", async (req, res) => {
   // console.log(req.body);
   var addVideo = {
     title: req.body.Title,
     url: req.body.Url,
   };
-  MongoClient.connect("mongodb://127.0.0.1:27017")
-    .then((obj) => {
-      var database = obj.db("videoplayer");
-      database
-        .collection("allvideo")
-        .insertOne(addVideo)
-        .then((doc) => {
-          // console.log(addVideo);
-          res.send(addVideo);
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  try {
+    const database = mongoose.connection;
+    const result = await database.collection("allvideo").insertOne(addVideo).find({}).toArray();
+    res.send(result);
+  } catch (err) {
+    console.error("Error fetching data from MongoDB:", err);
+    res.status(500).send("Internal Server Error");
+  }
+  // MongoClient.connect("mongodb://127.0.0.1:27017")
+  //   .then((obj) => {
+  //     var database = obj.db("videoplayer");
+  //     database
+  //       .collection("allvideo")
+  //       .insertOne(addVideo)
+  //       .then((doc) => {
+  //         // console.log(addVideo);
+  //         res.send(addVideo);
+  //       });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 });
 
 // app.listen(5500, () => {

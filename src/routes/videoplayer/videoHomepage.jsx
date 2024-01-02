@@ -41,8 +41,8 @@ export function Homepage() {
         //   result.data.map((items) => console.log("items",items.category))
         // );
         // Assuming you want to check for a successful response
+        console.log(result, "sakshi");
         if (result) {
-          // console.log(isFirst, "sakshi");
           setState({ video: result.data, _videoList: result.data });
         }
       } catch (error) {

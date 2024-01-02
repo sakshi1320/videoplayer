@@ -11,26 +11,38 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/allvideo", (req, res) => {
-  MongoClient.connect()
-    .then((obj) => {
-      var database = obj.db("videoplayer");
-      database
-        .collection("allvideo")
-        .find({})
-        .toArray()
-        .then((document) => {
-          res.send(document);
-        })
-        .catch((err) => {
-          console.error("Error fetching data from MongoDB:", err);
-          res.status(500).send("Internal Server Error");
-        });
-    })
-    .catch((err) => {
-      console.error("Error connecting to MongoDB:", err);
-      res.status(500).send("Internal Server Error");
-    });
+// app.get("/allvideo", (req, res) => {
+//   MongoClient.connect()
+//     .then((obj) => {
+//       var database = obj.db("videoplayer");
+//       database
+//         .collection("allvideo")
+//         .find({})
+//         .toArray()
+//         .then((document) => {
+//           res.send(document);
+//         })
+//         .catch((err) => {
+//           console.error("Error fetching data from MongoDB:", err);
+//           res.status(500).send("Internal Server Error");
+//         });
+//     })
+//     .catch((err) => {
+//       console.error("Error connecting to MongoDB:", err);
+//       res.status(500).send("Internal Server Error");
+//     });
+// });
+
+
+app.get("/allvideo", async (req, res) => {
+  try {
+    const database = mongoose.connection;
+    const result = await database.collection("allvideo").find({}).toArray();
+    res.send(result);
+  } catch (err) {
+    console.error("Error fetching data from MongoDB:", err);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.post("/signupDetails", (req, res) => {
@@ -99,6 +111,11 @@ app.post("/addvideo", (req, res) => {
     });
 });
 
-app.listen(5500, () => {
-  console.log("app is running on 5000");
+// app.listen(5500, () => {
+//   console.log("app is running on 5000");
+// });
+
+const PORT = process.env.PORT || 5500;
+app.listen(PORT, () => {
+  console.log(`App is running on port ${PORT}`);
 });

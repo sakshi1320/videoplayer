@@ -9,14 +9,14 @@
     </div>
     <div>
     <h3>## Sign Up Page</h3>
-    <img src="./public/signup.png" alt="SignIn Page" title="SignUp Page" style="width: 500px;">
+    <img src="./public/signup.png" alt="SignIn Page" title="SignUp Page" style="width: 800px;">
     </div>
     <div>
     <h3>## Sign In Page</h3>
-    <img src="./public/signin.png" alt="SignIn Page" title="SignIn Page" style="width: 500px;">
+    <img src="./public/signin.png" alt="SignIn Page" title="SignIn Page" style="width: 800px;">
     </div>
     <div>
     <h3>## Home Page</h3>
-    <img src="./public/home.png" alt="SignIn Page" title="Home Page" style="width: 500px;">
+    <img src="./public/home.png" alt="SignIn Page" title="Home Page" style="width: 800px;">
     </div>
 </div>

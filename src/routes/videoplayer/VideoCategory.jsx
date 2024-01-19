@@ -71,7 +71,7 @@ export function VideoCategory() {
                 </div>
               ))}
             </div>
-            <h4 className="categoryTitle">Food Video List</h4>
+            <h4 className="categoryTitle">Education Video List</h4>
             <div className="categoryDiv d-flex justify-content-between align-items-center flex-wrap">
               {filterscategoryedu?.map((vid) => (
                 <div>
@@ -84,7 +84,7 @@ export function VideoCategory() {
                 </div>
               ))}
             </div>
-            <h4 className="categoryTitle">Food Video List</h4>
+            <h4 className="categoryTitle">Songs Video List</h4>
             <div className="categoryDiv d-flex justify-content-between align-items-center flex-wrap">
               {filterscategorymovie?.map((vid) => (
                 <div>
@@ -97,7 +97,7 @@ export function VideoCategory() {
                 </div>
               ))}
             </div>
-            <h4 className="categoryTitle">Food Video List</h4>
+            <h4 className="categoryTitle">Movie Video List</h4>
             <div className="categoryDiv d-flex justify-content-between align-items-center flex-wrap">
               {filterscategorymusic?.map((vid) => (
                 <div>
